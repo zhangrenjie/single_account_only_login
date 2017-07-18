@@ -15,9 +15,7 @@ $userInfo = [
     'user_name' => 'administrator',
     'nick_name' => '超级管理员',
 ];
-$result = Login::doLogin($userInfo);
-
-if ($result) {
+if (Login::doLogin($userInfo)) {
     header('Location:./admin.php');
 } else {
     echo 'Sorry,Login failed;';
