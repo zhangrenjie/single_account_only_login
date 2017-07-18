@@ -17,7 +17,6 @@ class Login
     public static function checkLoginStatus()
     {
         if (empty($_SESSION)) return false;
-        //echo "<br/>";
         $sessionUserId = $_SESSION['user_id'] ?? 0;
         if ($sessionUserId && self::getSessionId() == self::getCacheSessionId($sessionUserId)) {
             return true;
@@ -27,14 +26,14 @@ class Login
         }
     }
 
-    public static function getCacheSessionId($userId)
+    public static function getCacheSessionId(int $userId)
     {
         $key = sprintf(self::$cacheSessionIdKey, $userId);
         $memcached = new MemcachedLib();
         return $memcached->getOne($key);
     }
 
-    public static function setCacheSessionId($userId)
+    public static function setCacheSessionId(int $userId)
     {
         $key = sprintf(self::$cacheSessionIdKey, $userId);
         $memcached = new MemcachedLib();
@@ -42,7 +41,7 @@ class Login
         return $memcached->addOne($key, session_id(), 86400);
     }
 
-    public static function deleteCacheSessionId($userId)
+    public static function deleteCacheSessionId(int $userId)
     {
         $key = sprintf(self::$cacheSessionIdKey, $userId);
         $memcached = new MemcachedLib();
@@ -54,7 +53,7 @@ class Login
         return session_id();
     }
 
-    public static function doLogin($userInfo)
+    public static function doLogin(array $userInfo)
     {
         $_SESSION['user_id'] = $userInfo['user_id'];
         $_SESSION['user_name'] = $userInfo['user_name'];
