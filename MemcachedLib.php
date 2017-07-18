@@ -35,7 +35,7 @@ class MemcachedLib
     //添加一条记录(有则替换无则创建)
     public function setOne(string $key, string $value, int $expiration = 0)
     {
-        return $this->memcached->add($key, $value, $expiration);
+        return $this->memcached->set($key, $value, $expiration);
     }
 
     public function deleteOne(string $key)
