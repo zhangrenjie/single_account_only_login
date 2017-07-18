@@ -17,7 +17,6 @@ class MemcachedLib
     {
         $this->memcached = new \Memcached();
         $this->memcached->addServer('localhost', '11211');
-
         return $this->memcached;
     }
 
