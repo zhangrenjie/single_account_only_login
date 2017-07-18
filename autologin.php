@@ -21,7 +21,7 @@ if ($result) {
     header('Location:./admin.php');
 } else {
     echo 'Sorry,Login failed;';
-    sleep(10);
+    sleep(5);
     Login::doLogout();
     header('Location:./login.php');
 }
